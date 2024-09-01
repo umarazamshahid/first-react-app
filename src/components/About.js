@@ -29,7 +29,7 @@ export default function About(props) {
               aria-controls="collapseOne"
               style={{
                 color: props.mode ? "white" : "black",
-                backgroundColor: props.mode ? "#212529" : "light",
+                backgroundColor: props.mode ? "#212529" : "white",
               }}
             >
               Accordion Item #1
