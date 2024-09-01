@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function Navbar(props) {
-  console.log("props:", props);
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      className={`navbar navbar-expand-lg  navbar-${
+        props.mode ? "dark" : "light"
+      } bg-${props.mode ? "dark" : "light"}`}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -40,11 +43,28 @@ export default function Navbar(props) {
               placeholder="Search"
               aria-label="Search"
             ></input>
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-primary" type="submit">
               Search
             </button>
           </form>
         </div>
+      </div>
+      <div
+        className={`form-check form-switch text-${
+          props.mode ? "light" : "dark"
+        }`}
+      >
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+          checked={props.mode}
+          onChange={props.toggleDarkMode}
+        />
+        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+          Dark Mode
+        </label>
       </div>
     </nav>
   );
@@ -53,9 +73,6 @@ export default function Navbar(props) {
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
-};
-
-Navbar.defaultProps = {
-  title: "Set your title here",
-  about: "Set your title here",
+  mode: PropTypes.bool.isRequired,
+  toggleDarkMode: PropTypes.func,
 };
